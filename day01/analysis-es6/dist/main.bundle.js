@@ -1,0 +1,1 @@
+(()=>{"use strict";document.body.appendChild(function(e){const n=document.createElement("div");return n.innerText="李大猫, 你好啊",n}())})();

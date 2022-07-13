@@ -114,7 +114,47 @@ module: {
 
 ​	使用file-loader解析
 
+## 文件监听
+
+启动是时候命令行加上 --watch or 在配置里面添加 watch: true
+
+调用nodejs fs模块检测文件内容有没有改变
+
+```
+{
+	watch: true;
+	watchOptions: {
+		ingore: /node_modules/, // 不监听的文件
+		aggregateTimeout: 300, // 检查到变化后多久执行重新打包
+		poll: 1000, // 隔多久检查
+	}
+}
+```
+
+
+
   ## 热更新
+
+​	HMR: hot module replacement ---> bundle server
+
+​	WDS: webpack dev server ---> HMR server 、HRM Runtime
+
+HMR 和 WDS配和使用： WDS提供链接访问资源的方法，HMR 实现了热更新的功能，检测到文件变化，就可以更新
+
+HMR 与 watch的区别
+
+​	存放位置不一样： HMR输出的文件放在内存中
+
+​	不需要刷新浏览器
+
+HMR的原理
+
+​	HMR server 服务端监听变化，通过ws将变化传给客服端(浏览器) HRM Runtime
+
+​	
+
+
+
   ## 文件后缀hash
 
 hash

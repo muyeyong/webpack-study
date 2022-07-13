@@ -1,6 +1,7 @@
 const path = require('path')
 module.exports = {
   mode: 'production',
+  watch: true,
   entry: {
     index: './src/index.js',
     search: './src/search.js'

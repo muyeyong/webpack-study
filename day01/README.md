@@ -151,9 +151,24 @@ HMR的原理
 
 ​	HMR server 服务端监听变化，通过ws将变化传给客服端(浏览器) HRM Runtime
 
-​	
+问题：
 
+​	存在多个入口，文件进行了热替换，但是浏览器显示没有刷新，需要手动更新
 
+​	解决办法：
+
+```js
+ devServer: {
+    static:[path.join(__dirname, 'dist')],
+    compress: true,
+    hot: false, // 把这个置为false
+    port: 9000,
+  },
+```
+
+​	Please set [webpack/webpack-dev-server#2792 (comment)](https://github.com/webpack/webpack-dev-server/issues/2792#issuecomment-806983882), because you have multiple entries on the same page
+
+​	参考连接： https://github.com/webpack/webpack/issues/15988
 
   ## 文件后缀hash
 

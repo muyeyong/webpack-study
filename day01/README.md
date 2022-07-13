@@ -114,6 +114,8 @@ module: {
 
 ​	使用file-loader解析
 
+​	url-loader --> base64????
+
 ## 文件监听
 
 启动是时候命令行加上 --watch or 在配置里面添加 watch: true
@@ -174,7 +176,9 @@ HMR的原理
 
 hash
 
-cintentHash
+contentHash
+
+chunkHash  没办法和hrm一起使用？
 
  ##  代码混淆(压缩)
 

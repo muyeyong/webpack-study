@@ -1,0 +1,11 @@
+.run .faster {
+  color: red;
+}
+.run .slower {
+  color: green;
+}
+.run .fly {
+  width: 100px;
+  height: auto;
+}
+

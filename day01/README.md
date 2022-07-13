@@ -67,13 +67,52 @@ es6
 
 ​	@babel/core  @bable/preset-env
 
+​	需要在根目录的.bablerc文件类使用
+
+```js
+{
+  "presets": [
+      "@babel/preset-env" // 解析es6
+  ]
+}
+```
+
 jsx
 
-css
+​	.babelrc添加对react的解析
 
-less、sass
+```js
+{
+  "presets": [
+      "@babel/preset-react" // 解析react
+  ]
+}
+```
+
+css、less、sass解析
+
+​	将css解析成commonjs对象，然后插入到js的head，需要使用 css-loader: 用于解析css 、style-loader: 通过style样式插入到head中(不是单独一个文件)。
+
+他们之间存在顺序调用，从右向左
+
+```js
+module: {
+  rules: [
+    {
+      test: /\.css$/,
+      use: ['styale-loader', 'css-loader']
+    }
+  ]
+}
+```
+
+
+
+![](https://s2.loli.net/2022/07/13/FLC13gJ6hVjHwrD.png)
 
 图片、字体
+
+​	使用file-loader解析
 
   ## 热更新
   ## 文件后缀hash

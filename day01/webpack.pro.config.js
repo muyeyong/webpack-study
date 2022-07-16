@@ -1,5 +1,7 @@
 const path = require('path')
 const miniCssEtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CssNinmizerPlugin = require('css-minimizer-webpack-plugin')
 module.exports = {
   mode: 'production',
   entry: {
@@ -38,9 +40,42 @@ module.exports = {
     }
    ],
   },
+  optimization: {
+    minimizer: [
+      new CssNinmizerPlugin()
+    ]
+  },
   plugins: [
     new miniCssEtractPlugin({
       filename: '[name]_[contenthash].css'
-    })
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/index.html'),
+      filename: 'index.html',
+      chunks: ['index'],
+      inject: true,
+      minify: {
+          html5: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false,
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: false
+      }
+  }),
+  new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/search.html'),
+      filename: 'search.html',
+      chunks: ['search'],
+      inject: true,
+      minify: {
+          html5: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false,
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: false
+      }
+    }),
   ]
 }

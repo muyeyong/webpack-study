@@ -155,7 +155,7 @@ HMR的原理
 
 问题：
 
-​	存在多个入口，文件进行了热替换，但是浏览器显示没有刷新，需要手动更新
+​	**存在多个入口，文件进行了热替换，但是浏览器显示没有刷新，需要手动更新**
 
 ​	解决办法：
 
@@ -172,6 +172,12 @@ HMR的原理
 
 ​	参考连接： https://github.com/webpack/webpack/issues/15988
 
+​	**wds 启动不会生成dist文件夹**
+
+​		https://segmentfault.com/q/1010000009393240
+
+ **热更新会全部更新？？？**
+
   ## 文件后缀hash
 
 hash
@@ -181,4 +187,41 @@ contentHash
 chunkHash  没办法和hrm一起使用？
 
  ##  代码混淆(压缩)
+
+### css压缩
+
+​	![](https://s2.loli.net/2022/07/16/bAdunaIGLexYJ2s.png)
+
+![](https://s2.loli.net/2022/07/16/MlkRBDGJefiLIVF.png)
+
+### js压缩
+
+​	打包的js文件已经压缩过了，webpack v5 开箱即带有最新版本的 `terser-webpack-plugin`。
+
+https://webpack.docschina.org/plugins/terser-webpack-plugin/
+
+### html压缩
+
+​	使用 `html-webpack-plugin`,生成一个html5文件，在 body 中使用 `script` 标签引入你所有 webpack 生成的 bundle。
+
+​	参数说明： https://github.com/jantimon/html-webpack-plugin#options
+
+```js
+new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/search.html'),
+      filename: 'search.html',
+      chunks: ['search'], // 需要引入的chunk
+      inject: true, // 注入css js资源
+      minify: {
+          html5: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false,
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: false
+      }
+    })  
+```
+
+
 

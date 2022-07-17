@@ -67,7 +67,79 @@ module:{
 
 ### 移动端适配
 
+​	两种方案：
+
+​		px2rem-loader/ postcss-pxtorem + lib-flexible
+
+![](https://s2.loli.net/2022/07/17/l9YkLu1TFZnHqVK.png)
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: [
+    ['autoprefixer'],
+    [
+      'postcss-pxtorem',
+        {
+        rootValue: 75,
+        minPixelValue: 2,
+        propList: ['*'],
+      }
+    ]
+  ],
+};
+```
+
+​		上面的操作就可以将px转换成rem，还需要做的是设置根元素(html)的font-size
+
+​			lib-flexible实现： 使用cdn引入 or 资源内联
+
+```js
+// 资源内联 
+<script  type="text/javascript">
+<%= require('raw-loader!babel-loader!../node_modules/lib-flexible/flexible.js').default %>
+  </script>
+
+// 自定义脚本
+ <script type="text/javascript">
+    window.addEventListener('resize', () => {
+      const deviceWidth = document.documentElement.clientWidth || document.body.clientWidth;
+       document.querySelector('html').style.fontSize = deviceWidth / 7.5 + 'px'
+    })
+  </script> 
+// cdn
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lib-flexible@0.3.2/flexible.js"></script>
+```
+
+​		解决手机端的1px
+
+postcss-px-to-viewport
+
+​	https://www.cnblogs.com/zhangnan35/p/12682925.html
+
+​	将px转换成vh vw，推荐使用
+
+​	
+
 ### 静态资源内联
+
+​	https://webpack.docschina.org/guides/asset-modules/
+
+js、html内联
+
+​	raw-loader
+
+​	如果引用的脚本使用了es6的语法，需要使用babel-loader转义
+
+```js
+// 最新版的 raw-loader 可以这样用：
+<%= require('raw-loader?esModule=false!./static/js/flexible.js') %> 或
+<%= require('raw-loader!./static/js/flexible.js').default %>
+```
+
+css内联
+
+​	style-loader / html-inline-css-webpack-plugin
 
 ### 多页面应用打包
 

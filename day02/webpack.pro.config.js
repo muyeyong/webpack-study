@@ -3,13 +3,13 @@ const miniCssEtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CssMinmizerPlugin = require('css-minimizer-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const glob = require('glob')
+
+
 
 module.exports = {
   mode: 'production',
-  entry: {
-    index: './src/index.js',
-    search: './src/search.js'
-  },
+  entry,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name]_[chunkhash:8].bundle.js',
@@ -67,34 +67,7 @@ module.exports = {
     new miniCssEtractPlugin({
       filename: '[name]_[contenthash].css'
     }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index.html'),
-      filename: 'index.html',
-      chunks: ['index'],
-      inject: true,
-      minify: {
-          html5: true,
-          collapseWhitespace: true,
-          preserveLineBreaks: false,
-          minifyCSS: true,
-          minifyJS: true,
-          removeComments: false
-      }
-  }),
-  new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/search.html'),
-      filename: 'search.html',
-      chunks: ['search'],
-      inject: true,
-      minify: {
-          html5: true,
-          collapseWhitespace: true,
-          preserveLineBreaks: false,
-          minifyCSS: true,
-          minifyJS: true,
-          removeComments: false
-      }
-    }),
-    // new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    ...HtmlWebpackPluginArray
   ]
 }

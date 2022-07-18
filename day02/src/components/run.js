@@ -1,6 +1,6 @@
 import React from 'react'
 import './run.less'
-import fly from './image/DJI_0926.png'
+import fly from '../image/DJI_0926.png'
 const Run = () => {
   return <>
   <p className='slower'> 我要去 法国</p>

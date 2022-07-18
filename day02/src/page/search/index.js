@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './search.css'
+import './index.css'
 
 class Search extends React.Component {
 

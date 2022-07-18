@@ -143,6 +143,53 @@ css内联
 
 ### 多页面应用打包
 
+​	多页应用的优势：
+
+​		页面解耦
+
+​		SEO更好
+
+​	实现：
+
+​		使用`glob`读取指定的文件夹，将里面的文件当成一个入口，实现entry 和 htmlWebpackPlugin批量生成
+
+```js
+const setMPA = () => {
+  let entry = {}
+  let HtmlWebpackPluginArray = []
+  const page = glob.sync(path.join(__dirname + '/src/page/*/index.js'))
+  page.forEach(entryFile => {
+    const match = entryFile.match(/src\/page\/(.*)\/index.js$/)
+    const pageName = match[1]
+    entry[pageName] = entryFile
+    HtmlWebpackPluginArray.push( 
+      new HtmlWebpackPlugin({
+      template: path.join(__dirname, `/src/page/${pageName}/index.html`),
+      filename: `${pageName}.html`,
+      chunks: [ pageName],
+      inject: true,
+      minify: {
+          html5: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false,
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: false
+      }
+    }))
+  })
+  return { entry, HtmlWebpackPluginArray }
+}
+
+const {entry, HtmlWebpackPluginArray} = setMPA()
+```
+
+
+
+​	遇到的问题：
+
+![](https://s2.loli.net/2022/07/18/oydIG1O4wNkhEnq.png)
+
 ### sourcemap
 
 ### 提取公共资源

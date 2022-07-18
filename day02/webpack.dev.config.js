@@ -1,12 +1,38 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const setMPA = () => {
+  let entry = {}
+  let HtmlWebpackPluginArray = []
+  const page = glob.sync(path.join(__dirname + '/src/page/*/index.js'))
+  page.forEach(entryFile => {
+    const match = entryFile.match(/src\/page\/(.*)\/index.js$/)
+    const pageName = match[1]
+    entry[pageName] = entryFile
+    HtmlWebpackPluginArray.push( 
+      new HtmlWebpackPlugin({
+      template: path.join(__dirname, `/src/page/${pageName}/index.html`),
+      filename: `${pageName}.html`,
+      chunks: [ pageName],
+      inject: true,
+      minify: {
+          html5: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false,
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: false
+      }
+    }))
+  })
+  return { entry, HtmlWebpackPluginArray }
+}
+
+const {entry, HtmlWebpackPluginArray} = setMPA()
 module.exports = {
   mode: 'development',
-  entry: {
-    index: './src/index.js',
-    search: './src/search.js'
-  },
+  entry,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
@@ -40,33 +66,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index.html'),
-      filename: 'index.html',
-      chunks: ['index'],
-      inject: true,
-      minify: {
-          html5: true,
-          collapseWhitespace: true,
-          preserveLineBreaks: false,
-          minifyCSS: true,
-          minifyJS: true,
-          removeComments: false
-      }
-  }),
-  new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/search.html'),
-      filename: 'search.html',
-      chunks: ['search'],
-      inject: true,
-      minify: {
-          html5: true,
-          collapseWhitespace: true,
-          preserveLineBreaks: false,
-          minifyCSS: true,
-          minifyJS: true,
-          removeComments: false
-      }
-    })  
+    ...HtmlWebpackPluginArray
   ],
 }

@@ -190,7 +190,21 @@ const {entry, HtmlWebpackPluginArray} = setMPA()
 
 ![](https://s2.loli.net/2022/07/18/oydIG1O4wNkhEnq.png)
 
-### sourcemap
+### sourceMap
+
+​	为什么需要sourceMap?
+
+​		实际上运行的代码跟原始代码存在差异，比如进行了压缩、转义，sourceMap就能起到一个连接作用，将实际运行的代码跟源码对应起来。在webpack通过`devTool`控制sourceMap的生成。
+
+| 值         | 作用                                 |
+| ---------- | ------------------------------------ |
+| eval       | 使用eval包裹代码                     |
+| source map | 产生.map文件                         |
+| cheap      | 不包含列信息                         |
+| inline     | 将.map嵌入bundle，不单独生成.map文件 |
+| module     | 包含loader的source map               |
+
+上面的5个值可以相互组合
 
 ### 提取公共资源
 

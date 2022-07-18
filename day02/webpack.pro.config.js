@@ -5,7 +5,34 @@ const CssMinmizerPlugin = require('css-minimizer-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const glob = require('glob')
 
+const setMPA = () => {
+  let entry = {}
+  let HtmlWebpackPluginArray = []
+  const page = glob.sync(path.join(__dirname + '/src/page/*/index.js'))
+  page.forEach(entryFile => {
+    const match = entryFile.match(/src\/page\/(.*)\/index.js$/)
+    const pageName = match[1]
+    entry[pageName] = entryFile
+    HtmlWebpackPluginArray.push( 
+      new HtmlWebpackPlugin({
+      template: path.join(__dirname, `/src/page/${pageName}/index.html`),
+      filename: `${pageName}.html`,
+      chunks: [ pageName],
+      inject: true,
+      minify: {
+          html5: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false,
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: false
+      }
+    }))
+  })
+  return { entry, HtmlWebpackPluginArray }
+}
 
+const {entry, HtmlWebpackPluginArray} = setMPA()
 
 module.exports = {
   mode: 'production',

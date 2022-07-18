@@ -206,7 +206,17 @@ const {entry, HtmlWebpackPluginArray} = setMPA()
 
 上面的5个值可以相互组合
 
+https://webpack.docschina.org/configuration/devtool/#root
+
 ### 提取公共资源
+
+​	可以抽离基础包和被引用次数多的模块
+
+https://webpack.docschina.org/plugins/split-chunks-plugin#root
+
+使用SplitChunksPlugin	
+
+
 
 ### Tree Shaking
 

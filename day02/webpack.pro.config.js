@@ -88,7 +88,23 @@ module.exports = {
   optimization: {
     minimizer: [
       new CssMinmizerPlugin()
-    ]
+    ],
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      minRemainingSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        commons: {
+          test: '/(react|react-dom)/',
+          name: 'vendors',
+          chunks: 'all',
+        }
+      }
+    }
   },
   plugins: [
     new miniCssEtractPlugin({

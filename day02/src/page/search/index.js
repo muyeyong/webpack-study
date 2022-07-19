@@ -3,6 +3,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
+import CommonTools from '../../common/common-tools'
+
+CommonTools()
 
 class Search extends React.Component {
 

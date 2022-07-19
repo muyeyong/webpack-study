@@ -11,8 +11,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import Run from '../../components/run'
+import CommonTools from '../../common/common-tools'
 
-
+CommonTools()
 
 ReactDOM.render(<Run/>, document.getElementById('run'))
 // console.log(Run('漂亮国'))

@@ -17,7 +17,7 @@ const setMPA = () => {
       new HtmlWebpackPlugin({
       template: path.join(__dirname, `/src/page/${pageName}/index.html`),
       filename: `${pageName}.html`,
-      chunks: ['vendor', pageName],
+      chunks: ['vendor','common', pageName],
       inject: true,
       minify: {
           html5: true,
@@ -106,7 +106,7 @@ module.exports = {
           },
         },
         vendor: {
-          test: /(react|react-dom)/ ,// '/[\\/]node_modules[\\/](react|react-dom)[\\/]/',
+          test: /(react|react-dom)/ ,
           name: 'vendor',
           chunks: 'all',
         },

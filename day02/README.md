@@ -216,6 +216,42 @@ https://webpack.docschina.org/plugins/split-chunks-plugin#root
 
 使用SplitChunksPlugin	
 
+```js
+optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commonGroup: {
+          chunks: 'all',
+          minSize: 0,
+          minRemainingSize: 0,
+          minChunks: 2,
+          maxAsyncRequests: 30,
+          maxInitialRequests: 30,
+          enforceSizeThreshold: 50000,
+          name: 'common',
+          test(module) {
+            const path = require('path');
+            return  module.resource && module.resource.includes(`${path.sep}src${path.sep}common${path.sep}`)
+          },
+        },
+        vendor: {
+          test: /(react|react-dom)/ ,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      }
+    }
+  },
+```
+
+`cacheGroups`里面有两个缓存组，可以打包出两个bundle，注意`test`的内容，第一个是筛选路径包含`/src/comon`的文件，第二个是筛选`react | react-dom`
+
+![](https://s2.loli.net/2022/07/20/Pgzfue7Y4E5JcSF.png)
+
+​	问题：
+
+​		使用`HtmlWebpackPlugin`的chunks限制引入的chunck，就算不把chunk的名字加入到chunks也是引用，就是说chunks不能限制chunk的引用。
+
 ### Tree Shaking
 
 ​	什么情况下开启：mode: production

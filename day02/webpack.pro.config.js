@@ -3,6 +3,7 @@ const miniCssEtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CssMinmizerPlugin = require('css-minimizer-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const TerserPlugin = require("terser-webpack-plugin");
 const glob = require('glob')
 
 const setMPA = () => {
@@ -87,7 +88,8 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new CssMinmizerPlugin()
+      new CssMinmizerPlugin(),
+      new TerserPlugin()
     ],
     splitChunks: {
       cacheGroups: {
@@ -117,7 +119,7 @@ module.exports = {
     new miniCssEtractPlugin({
       filename: '[name]_[contenthash].css'
     }),
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(), // output.clean = true
     ...HtmlWebpackPluginArray
   ]
 }

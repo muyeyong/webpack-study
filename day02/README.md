@@ -256,6 +256,8 @@ optimization: {
 
 ​	什么情况下开启：mode: production
 
+​	过程： 先标记 ---> 剔除(terser, 压缩的代码才会剔除)
+
 ​	代码删除原则
 
 ​			DCE（Dead Code Elimination）
@@ -271,6 +273,37 @@ optimization: {
 ​	uglify阶段删除代码
 
 ​	代码不能有副作用，存在副作用不能被tree shaking
+
+​	需要注意的地方：
+
+​		使用ES2015模板语法(import 和 export)
+
+​		确保没有编译器将您的 ES2015 模块语法转换为 CommonJS 的（顺带一提，这是现在常用的 @babel/preset-env 的默认行为，详细		信息请参阅[文档](https://babeljs.io/docs/en/babel-preset-env#modules) ，**@babel/preset-env: ^7.18.6 ，没有这个问题**
+
+​		在项目的 `package.json` 文件中，添加 `"sideEffects"` 属性
+
+实践：
+
+​	将`webpack.pro.config.js`中的mode设置为none，如果是production是开启tree shaking![](https://s2.loli.net/2022/07/20/VQiypsY3qWj1AmL.png)
+
+![](https://s2.loli.net/2022/07/20/uImenQTtLRKzSqX.png)
+
+使用tree shaking
+
+![](https://s2.loli.net/2022/07/20/uwLFcAWQglt84Ua.png)
+
+​	是不是注意使用了tree shaking的结果是被压缩的，最开始没有使用压缩，然后tree shaking死活不生效，查了资料说要压缩代码，但这个还没结束，我在optimization使用了css的压缩，webpack5自带的[js压缩](https://webpack.docschina.org/plugins/terser-webpack-plugin/)没有生效，需要显示声明才有效
+
+```js
+ optimization: {
+    minimizer: [
+      new CssMinmizerPlugin(),
+      new TerserPlugin()
+    ]
+ }
+```
+
+
 
 ### Scope Hoisting
 

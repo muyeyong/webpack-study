@@ -307,9 +307,13 @@ optimization: {
 
 ### Scope Hoisting
 
+​	分析出模块之间的依赖关系，尽可能将打散的模块合并到一个函数中，前提是不能造成代码冗余，作用域提升。
+
 ​	减少函数的作用域，webpack会把每个使用的function单独打包成一个闭包函数，scope hoisting可以将引用的function内联起来，减少闭包的数量，但是一个function被引用还是会被打包成一个单独的闭包
 
-实践相互引用处理 a -> b, b -> a
+​	需要分析出模块之间的关系，需要使用ES6模块语句
+
+​	参考：https://juejin.cn/post/6850418110983241741
 
 ### 代码分割和动态import
 
@@ -317,7 +321,11 @@ optimization: {
 
 ​	es6: 需要babel plugin支持
 
-​	jsonP 加载进来
+​	jsonp 加载进来
+
+​	实践：
+
+​		
 
 ### 在webpack使用ESlint
 

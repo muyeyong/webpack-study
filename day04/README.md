@@ -19,5 +19,11 @@
 
 ​	使用[speed-measure-webpack-plugin](https://www.npmjs.com/package/speed-measure-webpack-plugin)，进行速度分析
 
+![](https://s2.loli.net/2022/07/25/4I7sHGChoStnQWg.png)
+
+​	问题：
+
+​			mini-css-extract-plugin报错： https://github.com/stephencookdev/speed-measure-webpack-plugin/issues/167#issuecomment-976836861
+
 ### 体积分析
 

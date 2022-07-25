@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const glob = require('glob');
+const ESlintPlugin = require('eslint-webpack-plugin');
 
 const setMPA = () => {
   const entry = {};
@@ -87,7 +88,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ESlintPlugin({
-      fix: true
+      fix: true,
     }),
     ...HtmlWebpackPluginArray,
   ],

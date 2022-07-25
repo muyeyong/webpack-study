@@ -5,7 +5,7 @@ import { a } from '../tree-shark';
 
 function Run() {
   const loadDynamicImport = () => {
-    import('../dynamic-import').then(({ dafault: _ }) => {
+    import('../dynamic-import.jsx').then(({ dafault: _ }) => {
       console.log('dynamic', _);
     });
   };

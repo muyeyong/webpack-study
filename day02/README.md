@@ -323,15 +323,39 @@ optimization: {
 
 ​	jsonp 加载进来
 
-​	实践：
-
-​		
-
 ### 在webpack使用ESlint
 
 ​	eslint-loader  --->  eslint-webpack-plugin
 
 ​	如果检查出错误，怎么快速修复
+
+​	使用Airbnb规则
+
+```
+npm install eslint-plugin-jsx-a11y --save-dev
+npm install eslint-plugin-import --save-dev
+npm install eslint-config-airbnb --save-dev
+```
+
+问题：
+
+​	**Parsing error: No Babel config file detected**
+
+​		eslint 找不到babe配置文件，一开始是参考的将`.eslintrc.js`的`requireConfigFile`设置为false，eslint就会去检测babel与没有配置文件，虽然报错消失了，但是运行打包会提示`requireConfigFile`参数不合法，然后继续到网上查找，说是打开的目录不对，应该直接打开项目目录，然后问题就解决了。
+
+​	![](https://s2.loli.net/2022/07/25/Vz34pwHaEU6DyIP.png)
+
+​		
+
+​		参考文档：
+
+​				https://stackoverflow.com/questions/71501892/parsing-error-no-babel-config-file-detected
+
+​				[eslint报错：Parsing error: No Babel config file detected?](https://segmentfault.com/q/1010000042063266)
+
+​				https://www.cnblogs.com/hmy-666/p/16441069.html
+
+​	参考文档： https://webpack.docschina.org/plugins/eslint-webpack-plugin/#exclude
 
 ### Webpack打包组件和基础库
 

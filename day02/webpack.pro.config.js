@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CssMinmizerPlugin = require('css-minimizer-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const TerserPlugin = require("terser-webpack-plugin");
+const ESlintPlugin = require('eslint-webpack-plugin')
 const glob = require('glob')
 
 const setMPA = () => {
@@ -118,6 +119,9 @@ module.exports = {
   plugins: [
     new miniCssEtractPlugin({
       filename: '[name]_[contenthash].css'
+    }),
+    new ESlintPlugin({
+      fix: true
     }),
     // new CleanWebpackPlugin(), // output.clean = true
     ...HtmlWebpackPluginArray

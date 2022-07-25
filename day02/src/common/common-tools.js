@@ -1,3 +1,3 @@
-export default function() {
-  return '我是 common tools'
+export default function () {
+  return '我是 common tools';
 }

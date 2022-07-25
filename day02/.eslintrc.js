@@ -7,6 +7,16 @@ module.exports = {
   },
   rules: {
     // "indent": ["error", 4]
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'ignorePackages',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
-  'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
 };

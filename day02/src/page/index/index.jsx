@@ -10,7 +10,7 @@
 // import  say  from './say'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Run from '../../components/run';
+import Run from '../../components/run.jsx';
 import CommonTools from '../../common/common-tools';
 
 CommonTools();

@@ -53,7 +53,14 @@ const configWithTimeMeasures = smp.wrap({
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: [
+          {
+            loader: 'thread-loader',
+            options: {
+              workers: 3,
+            },
+          },
+          'babel-loader'],
       },
       {
         test: /\.css$/,
@@ -94,7 +101,9 @@ const configWithTimeMeasures = smp.wrap({
   optimization: {
     minimizer: [
       new CssMinmizerPlugin(),
-      new TerserPlugin(),
+      new TerserPlugin({
+        parallel: true,
+      }),
     ],
     splitChunks: {
       cacheGroups: {

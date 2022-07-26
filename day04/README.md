@@ -27,3 +27,35 @@
 
 ### 体积分析
 
+​	使用[webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer)
+
+### 使用高版本Webpack 和 nodejs
+
+​	高版本优化好点
+
+### 多进程/多实例构建
+
+​	使用 [thread-loader](https://webpack.docschina.org/loaders/thread-loader/#root)
+
+​	![](https://s2.loli.net/2022/07/26/jgLPd3QqmlJsyv1.png)
+
+### 多进程压缩代码
+
+​	使用[TerserWebpackPlungin](https://webpack.docschina.org/plugins/terser-webpack-plugin/#parallel)，之前也用来做代码压缩，默认打开多进程压缩，通过**[`parallel`](https://webpack.docschina.org/plugins/terser-webpack-plugin/#parallel)**配置，默认为true
+
+![](https://s2.loli.net/2022/07/26/dfXptVe5xzvSaNF.png)
+
+速度上还是有提升的。
+
+### 预编译资源模块
+
+​	https://webpack.docschina.org/plugins/dll-plugin#root
+
+​	一些基础库可以提前处理完或者使用缓存，这就是怎么处理变或不变的东西
+
+​	DllPlugin 和 DllReferencePlugin
+
+​	webapck5已经不需要使用了，很多优化很大程度都是用时间换空间或空间换时间，不变量怎么处理、加载最小需要的
+
+### 利用缓存提高二次构建的效率
+

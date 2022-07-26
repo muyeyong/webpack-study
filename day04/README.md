@@ -59,3 +59,20 @@
 
 ### 利用缓存提高二次构建的效率
 
+### 缩小构建目标
+
+​	指定那些目录不需要编译
+
+​	重新指定打包的查找目录
+
+### 擦除无用的CSS
+
+​	使用[purgecss-webpack-plugin](https://www.npmjs.com/package/purgecss-webpack-plugin)
+
+### 图片压缩
+
+​	使用[image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader)
+
+### 动态Polyfill
+
+​	使用[polyfill-service](https://github.com/Financial-Times/polyfill-service)，通过识别`User-Agent`来识别浏览器，根据不同的浏览器返回需要的polyfill，需要注意的是需要设计兜底方案，如果polyfill返回出错，需要返回全部的polyfill

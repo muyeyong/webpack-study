@@ -7,6 +7,11 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ESlintPlugin = require('eslint-webpack-plugin');
 const glob = require('glob');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const PurgeCSSPlugin = require('purgecss-webpack-plugin');
+
+const PATHS = {
+  src: path.join(__dirname, 'src'),
+};
 
 const smp = new SpeedMeasurePlugin();
 
@@ -135,6 +140,9 @@ const configWithTimeMeasures = smp.wrap({
     // }),
     new ESlintPlugin({
       fix: true,
+    }),
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
     }),
     // new CleanWebpackPlugin(), // output.clean = true
     ...HtmlWebpackPluginArray,

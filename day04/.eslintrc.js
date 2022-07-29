@@ -5,6 +5,7 @@ module.exports = {
     browser: true,
     node: true,
   },
+  ignorePatterns: ['dist'],
   rules: {
     // "indent": ["error", 4]
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],

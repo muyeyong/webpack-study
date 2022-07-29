@@ -27,7 +27,7 @@ module.exports = {
   },
   transform: (ast) => {
     const { code } = transformFromAst(ast, null, {
-      presets: ['env']
+      presets: [require("@babel/preset-env")]
     })
     return code
   }

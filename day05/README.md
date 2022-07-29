@@ -48,7 +48,13 @@
 
 ​		分析webpack打包结果
 
-​	问题：
+​	**问题：**
 
-​		es的模块化是静态的，不能在if else里面写	
+* es的模块化是静态的，不能在if else里面写	
+
+*  `@babel/preset-env`和`babel-preset-env`的区别
+
+​		[这里面](https://www.jiangruitao.com/babel/babel-preset-env/)提到两者只是在不同版本的不同称呼 `在Babel6时代，这个预设名字是 babel-preset-env，在Babel7之后，改成@babel/preset-env。; Babel7 为了区分之前的版本，所有的包名都改成了 @babel/... 格式`
+
+​			
 

@@ -26,7 +26,9 @@ module.exports = {
     return dependencis
   },
   transform: (ast) => {
-    const { code } = transformFromAst(ast)
+    const { code } = transformFromAst(ast, null, {
+      presets: ['env']
+    })
     return code
   }
 }

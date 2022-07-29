@@ -1,2 +1,2 @@
 import Greet from './greet.js'
-console.log('23333')
+document.write(Greet('大帅哥'))

@@ -28,7 +28,7 @@
 
 ​	AST(抽象语法树)应用： 模板引擎; es6 ===> es5、TS ==> JS等
 
-​	实现目标：
+​	**实现目标：**
 
 ​		**将ES5转换成ES5语法**
 
@@ -41,6 +41,12 @@
 ​			通过babel-traverse的 importDeclaration方法获取依赖属性  transformFromAstSync
 
 ​		**生成的JS在浏览器可运行**
+
+​	**过程：**
+
+​		教程里面其实只是利用ast分析模块之间的依赖关系，最后执行还是允许的源码
+
+​		分析webpack打包结果
 
 ​	问题：
 

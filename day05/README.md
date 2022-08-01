@@ -24,7 +24,11 @@
 
 ### Tapable插件架构与hook设计
 
-​	
+​		`tapable`中的事件可以分为同步和异步两种执行方式，`sync`同步，`async`异步，同步的钩子`tab`是唯一的注册方法，通过`call`触发同步钩子执行。异步的钩子可以通过`tap tapAsync tapPromise`三种方式来注册，同时可以通过对应的`call callAsync promise`三中方式来触发对应的注册函数。
+
+​	问题：
+
+​		webpack中的plugin也是使用tapable实现在不同阶段执行对应的代码，webpack都有哪些阶段，找一个复杂点的plugin看下怎样实现的·。。
 
 ​	参考： https://juejin.cn/post/7040982789650382855	
 

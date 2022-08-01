@@ -30,7 +30,11 @@
 
 ​		webpack中的plugin也是使用tapable实现在不同阶段执行对应的代码，webpack都有哪些阶段，找一个复杂点的plugin看下怎样实现的·。。
 
-​	参考： https://juejin.cn/post/7040982789650382855	
+​	参考：
+
+​			tapable:  https://juejin.cn/post/7040982789650382855	
+
+​			webapck钩子： https://webpack.docschina.org/api/compiler-hooks/#hooks
 
 ### 编写简单的webpack
 

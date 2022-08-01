@@ -20,9 +20,13 @@
 
 进行构建
 
+参考： https://juejin.cn/post/7031546400034947108
+
 ### Tapable插件架构与hook设计
 
+​	
 
+​	参考： https://juejin.cn/post/7040982789650382855	
 
 ### 编写简单的webpack
 
@@ -36,7 +40,7 @@
 
 ​			通过babel-core将AST生成源码
 
-​		**可以分析模块间的依赖关系**
+​		**可以分析模块间的依赖关系*
 
 ​			通过babel-traverse的 importDeclaration方法获取依赖属性  transformFromAstSync
 

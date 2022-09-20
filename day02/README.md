@@ -244,7 +244,7 @@ optimization: {
   },
 ```
 
-`cacheGroups`里面有两个缓存组，可以打包出两个bundle，注意`test`的内容，第一个是筛选路径包含`/src/comon`的文件，第二个是筛选`react | react-dom`
+`cacheGroups`里面有两个缓存组，可以打包出两个bundle，注意`test`的内容，第一个是筛选路径包含`/src/common`的文件，第二个是筛选`react | react-dom`
 
 ![](https://s2.loli.net/2022/07/20/Pgzfue7Y4E5JcSF.png)
 

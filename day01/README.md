@@ -100,7 +100,7 @@ module: {
   rules: [
     {
       test: /\.css$/,
-      use: ['styale-loader', 'css-loader']
+      use: ['style-loader', 'css-loader']
     }
   ]
 }

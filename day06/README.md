@@ -72,7 +72,7 @@ fs.readFile('/sec/index.js', 'utf-8', (err, data) => {
 
 ### 插件基本介绍
 
-​	需要提供apply方法，传入compiler，可以利用compiler.hook监听不同周期进行相应的处理
+​	需要提供apply方法，传入compiler，可以利用compiler.hooks监听不同周期进行相应的处理
 
 ​	
 
